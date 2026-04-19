@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/hospitalDB");
-    console.log("MongoDB connecté ✅");
-  } catch (err) {
-    console.error("Erreur connexion MongoDB :", err.message);
+    const conn = await mongoose.connect(process.env.MONGO_URI);
+    console.log(`MongoDB Atlas connecte : ${conn.connection.host}`);
+  } catch (error) {
+    console.error(`Erreur : ${error.message}`);
     process.exit(1);
   }
 };
